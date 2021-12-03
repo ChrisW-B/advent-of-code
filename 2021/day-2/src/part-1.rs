@@ -1,4 +1,3 @@
-use std::collections::VecDeque;
 use std::io;
 
 fn read_line_buffer() -> String {
@@ -10,8 +9,8 @@ fn read_line_buffer() -> String {
 }
 
 fn main() {
-    // x, y
-    let mut loc: VecDeque<i32> = VecDeque::from([0, 0]);
+    let mut x_loc = 0;
+    let mut y_loc = 0;
 
     let mut next_ln = read_line_buffer();
 
@@ -21,15 +20,15 @@ fn main() {
         let dist: i32 = dir_dist[1].trim().parse().unwrap();
 
         if dir == "forward" {
-            loc[0] = loc[0] + dist;
+            x_loc = x_loc + dist;
         } else if dir == "up" {
-            loc[1] = loc[1] - dist;
+            y_loc = y_loc - dist;
         } else if dir == "down" {
-            loc[1] = loc[1] + dist;
+            y_loc = y_loc + dist;
         }
 
         next_ln = read_line_buffer();
     }
 
-    print!("x: {}, y: {}, total: {}\n", loc[0], loc[1], loc[0] * loc[1])
+    print!("x: {}, y: {}, total: {}\n", x_loc, y_loc, x_loc * y_loc)
 }
